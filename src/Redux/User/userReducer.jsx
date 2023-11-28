@@ -13,6 +13,7 @@ import {
   deleteUserAdminApi,
   getSingleUserAdminApi,
 } from "./UserApi";
+import { useCookies } from 'react-cookie';
 
 const initialState = {
   status: "idle",
@@ -43,6 +44,7 @@ export const loadUserRequest = createAsyncThunk(
   "user/loadUserRequest",
   async () => {
     const response = await loadUserRequestApi();
+    console.log(response.data);
     return response.data;
   }
 );
