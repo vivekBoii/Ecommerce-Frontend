@@ -45,10 +45,10 @@ export default function SignUp() {
     }
   };
   useEffect(() => {
-    if (status === "success") {
+    if(status === "authenticated"){
       navigateTo(`/account`);
     }
-  }, [status, avatarPreview]);
+  }, [status, avatarPreview ,status]);
 
   const formik = useFormik({
     initialValues: {
@@ -59,14 +59,16 @@ export default function SignUp() {
     },
     onSubmit: (values) => {
       values.avatar = avatar;
-      dispatch(SignUpRequest(values));
+      if(values.name.length<3){
+        alert("Name should be greater than 3 Character");
+      }
+      else{
+        dispatch(SignUpRequest(values));
+      }
     },
   });
   return (
     <>
-      {error && (
-        <AlertBox type='error' message={"Invalid SignUp Credentials"} />
-      )}
       <Flex
         minH={{ base: "80vh", md: "85vh" }}
         justify={"center"}
@@ -134,7 +136,7 @@ export default function SignUp() {
                     value={formik.values.password}
                   />
                 </FormControl>
-                <Text fontWeight={"500"}>Upload Your Avatar</Text>
+                <Text fontWeight={"500"}>Upload Your Avatar (Less than 1 mb)</Text>
                 <img src={avatarPreview} alt='Avatar Preview' />
                 <input
                   type='file'
