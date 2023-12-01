@@ -20,6 +20,7 @@ const initialState = {
   user: "",
   token: null,
   users:{},
+  mailsent:null,
   adminUser:{},
 };
 
@@ -206,9 +207,11 @@ export const userSlice = createSlice({
       })
       .addCase(forgotPasswordRequest.fulfilled, (state, action) => {
         state.status = "notAuthenticated";
+        state.mailsent = true;
       })
       .addCase(forgotPasswordRequest.rejected, (state, action) => {
         state.status = "error";
+        state.mailsent = false;
       })
       .addCase(resetPasswordRequest.pending, (state) => {
         state.status = "loading";
