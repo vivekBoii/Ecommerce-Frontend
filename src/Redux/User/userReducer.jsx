@@ -173,7 +173,7 @@ export const userSlice = createSlice({
         state.status = "error";
       })
       .addCase(logoutRequest.pending, (state) => {
-        state.status = "loading";
+        state.status = "notAuthenticated";
       })
       .addCase(logoutRequest.fulfilled, (state, action) => {
         state.status = "notAuthenticated";

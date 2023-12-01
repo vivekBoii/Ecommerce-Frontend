@@ -67,6 +67,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const productDetails = useSelector((state) => state.products.productDetails);
+  const status = useSelector((state) => state.user.status);
   const [quantity, setQuantity] = useState(1);
   const [comment, setcomment] = useState("");
   const [rating, setrating] = useState(0);
@@ -78,15 +79,19 @@ const ProductDetails = () => {
 
   const handleReviewSumbit = (e) => {
     e.preventDefault();
-    const myForm = new FormData();
-    myForm.set("rating", rating);
-    myForm.set("comment", comment);
-    myForm.set("productId", id);
-    console.log(myForm);
-    dispatch(newReviewRequest(myForm));
-    setTimeout(() => {
-      dispatch(fetchProductDetails(id));
-    }, 100);
+    if (status === "notAuthenticated") {
+      alert("Login Please");
+    } else {
+      const myForm = new FormData();
+      myForm.set("rating", rating);
+      myForm.set("comment", comment);
+      myForm.set("productId", id);
+      console.log(myForm);
+      dispatch(newReviewRequest(myForm));
+      setTimeout(() => {
+        dispatch(fetchProductDetails(id));
+      }, 1000);
+    }
   };
 
   // ----carousel-----
