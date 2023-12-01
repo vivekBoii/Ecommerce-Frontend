@@ -287,6 +287,7 @@ const Scard = ({ product }) => {
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(addToCartRequest({ id: product._id, quantity: 1 }));
+                prompt("Added to Cart Successfully");
               }}
               variant='ghost'
               colorScheme='green'

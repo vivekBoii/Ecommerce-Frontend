@@ -356,6 +356,7 @@ const ProductDetails = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(addToCartRequest({ id, quantity }));
+                      prompt("Added to Cart Successfully");
                     }}
                   >
                     Add to cart
