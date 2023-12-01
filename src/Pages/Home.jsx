@@ -149,7 +149,7 @@ const Home = () => {
           })}
         </SimpleGrid>
       </Box>
-      <Box maxW={"7xl"} mx={"auto"}>
+      <Box maxW={"7xl"} mx={"auto"} position={"relative"}>
         <Text
           color={"black"}
           fontWeight={500}
@@ -160,16 +160,18 @@ const Home = () => {
         >
           Our Top Products
         </Text>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={10}>
-          {products.status === "loading" ? (
+        {products.status === "loading" ? (
+          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
             <Loader />
-          ) : (
-            products.productItem &&
-            products.productItem.map((item) => {
-              return <Scard key={item._id} product={item} />;
-            })
-          )}
-        </SimpleGrid>
+          </Box>
+        ) : (
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={10}>
+            {products.productItem &&
+              products.productItem.map((item) => {
+                return <Scard key={item._id} product={item} />;
+              })}
+          </SimpleGrid>
+        )}
       </Box>
       <Flex
         w={"full"}
