@@ -284,7 +284,7 @@ const Scard = ({ product }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(addToCartRequest({ Id: product._id, quantity: 1 }));
+                dispatch(addToCartRequest({ id: product._id, quantity: 1 }));
               }}
               variant='ghost'
               colorScheme='green'

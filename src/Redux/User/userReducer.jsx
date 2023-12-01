@@ -13,8 +13,7 @@ import {
   deleteUserAdminApi,
   getSingleUserAdminApi,
 } from "./UserApi";
-import { useCookies } from 'react-cookie';
-
+  
 const initialState = {
   status: "idle",
   error: null,

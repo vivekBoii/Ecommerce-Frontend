@@ -1,6 +1,3 @@
-// todo 
-// no result found 
-// // loader 
 import {
   Box,
   Stack,
@@ -100,9 +97,6 @@ const Product = () => {
 
   return (
     <>
-      {products.status === "loading" ? (
-        <Loader />
-      ) : products.status === "success" ? (
         <>
           <Box
             maxW={"10xl"}
@@ -286,9 +280,6 @@ const Product = () => {
             )}
           </Box>
         </>
-      ) : (
-        <AlertBox type='error' message={products.error.message} />
-      )}
     </>
   );
 };
@@ -353,7 +344,7 @@ const Scard = ({ product }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(addToCartRequest({ Id: product._id, quantity: 1 }));
+                dispatch(addToCartRequest({ id: product._id, quantity: 1 }));
               }}
               variant='ghost'
               colorScheme='green'
